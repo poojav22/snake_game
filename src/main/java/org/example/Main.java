@@ -56,7 +56,7 @@ public class Main {
             }
         });
         jframe.setVisible(true);
-
+        snake.setDirection(lastDirection[0]);
         while(true) {
 
             Thread.sleep(1000);
@@ -66,7 +66,7 @@ public class Main {
             System.out.printf("Food location: (%d, %d)\n", food.location.x, food.location.y);
             fPanel.setLocation(food.location.x, food.location.y);
             jframe.repaint();
-            snake.move(jframe, sPanel, lastDirection[0], food);
+            snake.move(jframe, sPanel, snake.getDirection(), food);
 
             if (snake.current_loc.x == food.location.x && snake.current_loc.y == food.location.y) {
                 food.consume_food();

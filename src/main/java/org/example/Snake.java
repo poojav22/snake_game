@@ -13,26 +13,25 @@ public class Snake {
         UP,
         DOWN
     }
-    String curr_dir;
+    Direction  curr_dir;
     public Snake() {
         this.board = new Board();
         this.size = 1;
         this.current_loc = new Cell(0, 0);
-        this.curr_dir = String.valueOf(Direction.RIGHT);
+        this.curr_dir = Direction.RIGHT;
     }
 
     public int get_size() {
-        return this.size;
+        return this.size * 10;
     }
 
-    public int set_size(int size) {
+    public void set_size(int size) {
         this.size = size;
-        return this.size;
     }
 
     public void grow(JPanel sPanel) {
         this.set_size(this.get_size()+10);
-        //sPanel.setSize(this.size, 50);
+        this.snakeRedraw(sPanel, this.getDirection(), true);
         System.out.printf("Snake has grown. Snake size: %d\n", this.get_size());
     }
 
@@ -40,17 +39,50 @@ public class Snake {
         return this.current_loc;
     }
 
-    public Cell set_current_loc(Cell current_loc) {
+    public void set_current_loc(Cell current_loc) {
         this.current_loc = current_loc;
-        return this.current_loc;
     }
 
+    public Direction getDirection() {
+        return this.curr_dir;
+    }
+
+    public void setDirection(Direction dir) {
+        this.curr_dir = dir;
+    }
+
+    public void snakeRedraw(JPanel sPanel, Direction dir, boolean grow) {
+        int temp;
+        int height = sPanel.getHeight();
+        int width = sPanel.getWidth();
+        System.out.printf("width: %d, height:%d ", width,height);
+        System.out.printf("Curr dir: %s, Dir %s\n",  curr_dir, dir);
+        if (this.curr_dir != dir) {
+            temp = width;
+            width = height;
+            height = temp;
+        }
+        if (this.curr_dir == Direction.RIGHT || this.curr_dir == Direction.LEFT) {
+            if (grow) {
+                width += 10;
+            }
+
+        } else if (this.curr_dir == Direction.UP || this.curr_dir == Direction.DOWN) {
+            if (grow) {
+                height += 10;
+            }
+        }
+        sPanel.setSize(width, height);
+    }
     public void move(JFrame frame, JPanel sPanel, Direction dir, Food food) {
         System.out.printf("Current direction: %s\n", dir);
+        //
+        this.snakeRedraw(sPanel, dir, false);
+        this.setDirection(dir);
         if (dir == Direction.RIGHT) {
             current_loc = this.get_current_loc();
             current_loc.x += 100;
-            if (current_loc.x > board.size) {
+            if (current_loc.x > board.length) {
                 this.game_over();
             } else {
                 System.out.printf("Current location now: (%d, %d)\n", current_loc.x, current_loc.y);
@@ -88,7 +120,7 @@ public class Snake {
         else if (dir == Direction.DOWN) {
                     current_loc = this.get_current_loc();
                     current_loc.y += 100;
-                    if (current_loc.y > board.size) {
+                    if (current_loc.y > board.breadth) {
                         this.game_over();
                     } else {
                         System.out.printf("Current location now: (%d, %d)\n", current_loc.x, current_loc.y);
@@ -97,6 +129,7 @@ public class Snake {
                         frame.repaint();
                     }
                 }
+
 //        if (this.current_loc.x == food.location.x && this.current_loc.y == food.location.y) {
 //            food.consume_food();
 //            this.grow(sPanel);
