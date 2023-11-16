@@ -76,7 +76,14 @@ public class Snake {
     }
     public void move(JFrame frame, JPanel sPanel, Direction dir, Food food) {
         System.out.printf("Current direction: %s\n", dir);
-        //
+        if ((this.curr_dir == Direction.RIGHT) && (dir == Direction.LEFT) || (this.curr_dir == Direction.LEFT) && (dir == Direction.RIGHT)) {
+            System.out.print("Invalid move\n");
+            return;
+        }
+        if ((this.curr_dir == Direction.UP) && (dir == Direction.DOWN) || (this.curr_dir == Direction.DOWN) && (dir == Direction.UP)) {
+            System.out.print("Invalid move\n");
+            return;
+        }
         this.snakeRedraw(sPanel, dir, false);
         this.setDirection(dir);
         if (dir == Direction.RIGHT) {
