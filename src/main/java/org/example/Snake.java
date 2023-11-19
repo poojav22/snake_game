@@ -76,7 +76,7 @@ public class Snake {
         sPanel.setSize(width, height);
     }
 
-    public void move(JFrame frame, JPanel sPanel, Direction dir, Food food, JPanel fPanel) {
+    public void move(JFrame frame, JPanel sPanel, Direction dir, Food food, JPanel fPanel) throws Exception {
         System.out.printf("Current direction: %s\n", dir);
         if ((this.curr_dir == Direction.RIGHT) && (dir == Direction.LEFT) || (this.curr_dir == Direction.LEFT) && (dir == Direction.RIGHT)) {
             System.out.print("Invalid move\n");
@@ -141,8 +141,8 @@ public class Snake {
         }
     }
 
-    public void game_over() {
+    public void game_over() throws Exception {
         System.out.println("Game Over.\nRestart the game");
-        System.exit(1);
+        throw new Exception("Game Over.\nRestart the game");
     }
 }

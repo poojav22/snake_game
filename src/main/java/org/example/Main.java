@@ -33,25 +33,45 @@ public class Main {
                 if (keycode == KeyEvent.VK_UP) {
                     System.out.println("Up arrow is pressed");
                     lastDirection[0] = Snake.Direction.UP;
-                    snake.move(jframe, sPanel, Snake.Direction.UP, food, fPanel);
+                    try {
+						snake.move(jframe, sPanel, Snake.Direction.UP, food, fPanel);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 
                 }
                 else if (keycode == KeyEvent.VK_DOWN) {
                     System.out.println("Down arrow is pressed");
                     lastDirection[0] = Snake.Direction.DOWN;
-                    snake.move(jframe, sPanel, Snake.Direction.DOWN, food, fPanel);
+                    try {
+						snake.move(jframe, sPanel, Snake.Direction.DOWN, food, fPanel);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 
                 }
                 else if (keycode == KeyEvent.VK_RIGHT) {
                     System.out.println("Right arrow is pressed");
                     lastDirection[0] = Snake.Direction.RIGHT;
-                    snake.move(jframe, sPanel, Snake.Direction.RIGHT, food, fPanel);
+                    try {
+						snake.move(jframe, sPanel, Snake.Direction.RIGHT, food, fPanel);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 
                 }
                 else if (keycode == KeyEvent.VK_LEFT) {
                     System.out.println("Left arrow is pressed");
                     lastDirection[0] = Snake.Direction.LEFT;
-                    snake.move(jframe, sPanel, Snake.Direction.LEFT, food, fPanel);
+                    try {
+						snake.move(jframe, sPanel, Snake.Direction.LEFT, food, fPanel);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
                 }
             }
         });
@@ -66,7 +86,12 @@ public class Main {
             System.out.printf("Food location: (%d, %d)\n", food.location.x, food.location.y);
             fPanel.setLocation(food.location.x, food.location.y);
             jframe.repaint();
-            snake.move(jframe, sPanel, snake.getDirection(), food, fPanel);
+            try {
+				snake.move(jframe, sPanel, snake.getDirection(), food, fPanel);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 
             if (snake.current_loc.x == food.location.x && snake.current_loc.y == food.location.y) {
                 food.consume_food();

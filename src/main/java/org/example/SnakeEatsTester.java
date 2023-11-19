@@ -15,7 +15,12 @@ public class SnakeEatsTester {
 		sPanel.setSize(50,50);
 		Cell cell = new Cell(500,400);
 		snake.set_current_loc(cell);
-		snake.move(new JFrame(), sPanel, Snake.Direction.DOWN, new Food(), new JPanel());
+		try {
+			snake.move(new JFrame(), sPanel, Snake.Direction.DOWN, new Food(), new JPanel());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(300, snake.get_size());
 	}
 	@Test public void snakeEatsUp() {
@@ -25,7 +30,12 @@ public class SnakeEatsTester {
 		sPanel.setSize(50,50);
 		Cell cell = new Cell(500,600);
 		snake.set_current_loc(cell);
-		snake.move(new JFrame(), sPanel, Snake.Direction.UP, new Food(), new JPanel());
+		try {
+			snake.move(new JFrame(), sPanel, Snake.Direction.UP, new Food(), new JPanel());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(300, snake.get_size());
 	}
 	@Test public void snakeEatsLeft() {
@@ -36,7 +46,12 @@ public class SnakeEatsTester {
 		sPanel.setSize(50,50);
 		Cell cell = new Cell(600,500);
 		snake.set_current_loc(cell);
-		snake.move(new JFrame(), sPanel, Snake.Direction.LEFT, new Food(), new JPanel());
+		try {
+			snake.move(new JFrame(), sPanel, Snake.Direction.LEFT, new Food(), new JPanel());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(300, snake.get_size());
 	}
 	@Test public void snakeEatsRight() {
@@ -47,7 +62,12 @@ public class SnakeEatsTester {
 		sPanel.setSize(50,50);
 		Cell cell = new Cell(400,500);
 		snake.set_current_loc(cell);
-		snake.move(new JFrame(), sPanel, Snake.Direction.RIGHT, new Food(), new JPanel());
+		try {
+			snake.move(new JFrame(), sPanel, Snake.Direction.RIGHT, new Food(), new JPanel());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(300, snake.get_size());
 	}
 }
