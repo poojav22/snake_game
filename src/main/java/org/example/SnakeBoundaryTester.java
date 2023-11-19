@@ -30,10 +30,12 @@ public class SnakeBoundaryTester {
 		JPanel sPanel = new JPanel();
 		sPanel.setSize(50,50);
 		Cell cell = new Cell(400,snake.board.breadth);
+		Food food = new Food();
+		food.location = cell;
 		snake.set_current_loc(cell);
 		boolean thrown = false;
 		try {
-			snake.move(new JFrame(), sPanel, Snake.Direction.RIGHT, new Food(), new JPanel());
+			snake.move(new JFrame(), sPanel, Snake.Direction.RIGHT, food, new JPanel());
 		} catch (Exception e) {
 			thrown = true;
 		}
@@ -62,6 +64,8 @@ public class SnakeBoundaryTester {
 		Cell cell = new Cell(400,0);
 		snake.set_current_loc(cell);
 		boolean thrown = false;
+		Food food = new Food();
+		food.location = cell;
 		try {
 			snake.move(new JFrame(), sPanel, Snake.Direction.UP, new Food(), new JPanel());
 		} catch (Exception e) {
@@ -85,6 +89,8 @@ public class SnakeBoundaryTester {
 		try {
 			snake.move(sFrame, sPanel, Snake.Direction.DOWN, food, fPanel);
 			snake.move(sFrame, sPanel, Snake.Direction.LEFT, food, fPanel);
+			Cell c = snake.current_loc;
+			c.y = c.y = 100;
 			snake.move(sFrame, sPanel, Snake.Direction.UP, food, fPanel);
 			snake.move(sFrame, sPanel, Snake.Direction.LEFT, food, fPanel);
 		} catch (Exception e) {
@@ -106,7 +112,9 @@ public class SnakeBoundaryTester {
 		food.location = cell;
 		boolean thrown = false;
 		try {
+			snake.move(sFrame, sPanel, Snake.Direction.RIGHT, food, fPanel);
 			snake.move(sFrame, sPanel, Snake.Direction.DOWN, food, fPanel);
+			snake.move(sFrame, sPanel, Snake.Direction.UP, food, fPanel);
 			snake.move(sFrame, sPanel, Snake.Direction.LEFT, food, fPanel);
 		} catch (Exception e) {
 			thrown = true;
