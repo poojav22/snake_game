@@ -92,4 +92,29 @@ public class SnakeBoundaryTester {
 		}
 		assertTrue(thrown);
 	}
+	@Test public void foodExists() {
+		Snake snake = new Snake();
+		snake.size = 2;
+		snake.curr_dir = Snake.Direction.LEFT;
+		JPanel sPanel = new JPanel();
+		JPanel fPanel = new JPanel();
+		JFrame sFrame = new JFrame();
+		Food food = new Food();
+		sPanel.setSize(50,50);
+		Cell cell = new Cell(100,200);
+		snake.set_current_loc(cell);
+		food.location = cell;
+		boolean thrown = false;
+		try {
+			snake.move(sFrame, sPanel, Snake.Direction.DOWN, food, fPanel);
+			snake.move(sFrame, sPanel, Snake.Direction.LEFT, food, fPanel);
+		} catch (Exception e) {
+			thrown = true;
+		}
+		assertFalse(thrown);
+		assertTrue(food.location.x >= 0);
+		assertTrue(food.location.y >= 0);
+		assertTrue(food.location.x <= snake.board.length);
+		assertTrue(food.location.y <= snake.board.breadth);
+	}
 }
